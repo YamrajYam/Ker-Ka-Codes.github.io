@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Template Mo">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+
+    <title>Code-Victor Importer</title><link rel="icon" type="image/x-icon" href="assets/images/favicon.ico">
+
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" href="assets/css/fontawesome.css">
+    <link rel="stylesheet" href="assets/css/templatemo-edu-meeting.css">
+    <link rel="stylesheet" href="assets/css/owl.css">
+    <link rel="stylesheet" href="assets/css/lightbox.css">
+<!--
+
+TemplateMo 569 Edu Meeting
+
+https://templatemo.com/tm-569-edu-meeting
+
+-->
+  </head>
+
+<body>
+
+   
+
+  <!-- Sub Header -->
+  <div class="sub-header">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-sm-8">
+          <div class="left-content">
+            <p><em>Coded By</em> Kuldeep Kumar.</p>
+          </div>
+        </div>
+        <div class="col-lg-4 col-sm-4">
+          <div class="right-icons">
+            <ul>
+              <li><a href="https://www.instagram.com/kuldeepkumar_.prajapati/?hl=en"><i class="fa fa-instagram"></i></a></li>
+              <li><a href="https://wa.me/+917042850051?text=Hey!"><i class="fa fa-whatsapp"></i></a></li>
+              <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ***** Header Area Start ***** -->
+  <header class="header-area header-sticky">
+      <div class="container">
+          <div class="row">
+              <div class="col-12">
+                  <nav class="main-nav">
+                      <!-- ***** Logo Start ***** -->
+                      <a href="index.html" class="logo">
+                          Ker-Ka Codes
+                      </a>
+                      <!-- ***** Logo End ***** -->
+                      <!-- ***** Menu Start ***** -->
+                      <ul class="nav">
+                          <li><a href="index.html" >Home</a></li>
+                          <li><a href="code.html">Python Codes</a></li>
+                          <li ><a href="code1.html" class="active">Import Management System</a></li>
+
+                      </ul>        
+                      <a class='menu-trigger'>
+                          <span>Menu</span>
+                      </a>
+                      <!-- ***** Menu End ***** -->
+                  </nav>
+              </div>
+          </div>
+      </div>
+  </header>
+ </header>
+  <!-- ***** Header Area End ***** -->
+
+  <section class="heading-page header-text" id="top">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <h6>Get Source Code</h6>
+          <h2>Import Management System</h2>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="meetings-page" id="meetings">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="meeting-single-item">
+                <div class="thumb">
+                  <div class="price">
+                    <span>Created on</span>
+                  </div>
+                  <div class="date">
+                    <h6>Nov <span>12</span></h6>
+                  </div>
+                  <a href="assets/images/p1.1.jpg"><img src="assets/images/p1.1.jpg" alt=""></a>
+                </div>
+                <div class="down-content">
+                  <a href="meeting-details.html"><h4>Import Management System</h4></a>
+                  <p>By Kuldeep Kumar dated 24-Jan-2022</p>
+                  <p class="description">
+                    Backend
+                    <pre>
+                      <code>
+import mysql.connector as ms
+mydb = ms.connect(
+    host="localhost",
+    user="root",
+    password="your password",
+    database="nameofdatabase") 
+
+w=mydb.cursor()
+#add details
+def adddetails(P_ID, NAME,CATAGORY, BRAND,QUANTITY,DATE_OF_IMPORT):
+    a="insert into IMPORTED_MATERIAL(P_ID, NAME,CATAGORY, BRAND,QUANTITY,DATE_OF_IMPORT) values(%s,%s,%s,%s,%s,%s)"
+    w.execute(a,(P_ID, NAME,CATAGORY, BRAND,QUANTITY,DATE_OF_IMPORT))
+    mydb.commit()
+
+#accesing data
+def disall():
+    b="select * from imported_material"
+    w.execute(b)
+    rows=w.fetchall()
+    return rows
+
+
+
+#delete data
+def deleted(z):
+    c="delete from imported_material where P_ID ={}".format(z)
+    w.execute(c)
+    mydb.commit()
+
+#delete all data from database
+def deleteall():
+    d="delete from imported_material"
+    w.execute(d)
+    mydb.commit()
+
+#display data from P_ID
+def disq(x):
+    e="select * from imported_material where P_ID={}".format(x)
+    w.execute(e)
+    f=w.fetchone()
+    return f
+    #print(f)
+
+#update data of specific P_ID
+def modi(P_ID, NAME,CATAGORY, BRAND,QUANTITY,DATE_OF_IMPORT):
+    f="update imported_material set NAME=%s,CATAGORY=%s, BRAND=%s,QUANTITY=%s,DATE_OF_IMPORT=%s where P_ID=%s"
+    w.execute(f,( NAME,CATAGORY, BRAND,QUANTITY,DATE_OF_IMPORT,P_ID))
+    mydb.commit()
+
+#filters for viewing sorted data
+
+
+def sortidasc():
+    w.execute("select * from imported_material order by P_ID ASC")
+    rows=w.fetchall()
+    return rows
+
+
+def sortiddesc():
+    w.execute("select * from imported_material order by P_ID DESC")
+    rows=w.fetchall()
+    return rows
+
+
+def sortqasc():
+    w.execute("select * from imported_material order by QUANTITY ASC")
+    rows=w.fetchall()
+    return rows
+
+
+def sortqdesc():
+    w.execute("select * from imported_material order by QUANTITY DESC")
+    rows=w.fetchall()
+    return rows
+def sortdoiasc():
+    w.execute("select * from imported_material order by DATE_OF_IMPORT ASC")
+    rows=w.fetchall()
+    return rows
+def sortdoidesc():
+    w.execute("select * from imported_material order by DATE_OF_IMPORT DESC")
+    rows=w.fetchall()
+    return rows
+
+                      </code>
+                    </pre>
+                    </p>
+                    <p class="description">Frontend
+                      <pre>
+                        <code>
+#importing libraries and functions 
+from tkinter import *
+from tkinter import ttk
+from tkinter import messagebox
+from tkcalendar import Calendar, DateEntry
+from PIL import ImageTk, Image 
+from back import disall,modi,disq,deleteall,deleted,adddetails
+from back import sortdoidesc,sortdoiasc,sortqdesc,sortqasc,sortiddesc,sortidasc
+
+database = ("victor_importer.db")
+db=database
+root = Tk()
+root.title("VICTOR IMPORT MANAGEMENT SYSTEM")
+root.geometry("1920x1080+0+0")
+root.config(bg="#b33c00")
+root.state("zoomed")
+font="consolas 16 "
+font1="terminal 22 "
+font2="calibri 12 bold"
+
+
+
+
+#design
+
+cut=Frame(root,width=40,height=350,background="#03a1fc")
+cut.pack()
+cut.place(x=665,y=0)
+cut1=Frame(root,width=40,height=260,background="#03a1fc")
+cut1.pack()
+cut1.place(x=665,y=443)
+
+#having 2 diffrent frames 1 for input and all and 2nd for result
+
+#action frame(input)
+
+aframe = Frame(root, width=655, height=700, background="black")
+aframe.pack()
+aframe.place(x=0,y=5)
+
+
+
+
+#seprator
+
+
+#resultframe
+
+rframe = Frame(root, width=655, height=700, background="blue")
+rframe.pack()
+rframe.place(x=715,y=5)
+
+#showimg
+img = (Image.open("op.jpg"))
+reimg=img.resize((60,60))
+im2=ImageTk.PhotoImage(reimg)
+label = Label(root, image = im2)
+label.pack()
+label.place(x=653,y=365)
+
+
+#displaying table
+style = ttk.Style()
+style.configure("mystyle.Treeview", font=('Calibri', 10),rowheight=60,columnwidth=5)
+tab=ttk.Treeview(rframe,columns=(1,2,3,4,5,6),style="mystyle.Treeview")
+tab.column("1",anchor=CENTER, stretch=NO, width=60)
+tab.heading("1",text="P ID")
+tab.column("2",anchor=CENTER, stretch=NO, width=140)
+tab.heading("2",text="Name")
+tab.column("3",anchor=CENTER, stretch=NO, width=140)
+tab.heading("3",text="Catogary")
+tab.column("4",anchor=CENTER, stretch=NO, width=120)
+tab.heading("4",text="Brand")
+tab.column("5",anchor=CENTER, stretch=NO, width=60)
+tab.heading("5",text="Quantity")
+tab.column("6",anchor=CENTER, stretch=NO, width=120)
+tab.heading("6",text="D.O.Import")
+tab['show']='headings'
+tab.pack()
+tab.place(x=5,y=65)
+
+#PROJECT NAME
+
+project=Label(root,text="VICTOR IMPORTER",height="2",width="20",font=font1,background="red")
+project.pack()
+project.place()
+
+
+#pid
+
+pid=Label(root,text="P ID",height="1",width="19",font=font,background="green")
+pid.pack(side="left")
+pid.place(x=0,y=75)
+
+#enter Pid
+
+e1=Entry(root,font=font,background="white")
+e1.pack()
+e1.place(x=400,y=75)
+
+
+#product name
+pdn=Label(root,text="Product Name",height="1",width="19",font=font,background="green")
+pdn.pack(side="left")
+pdn.place(x=0,y=125)
+
+#enterpname
+
+e2=Entry(root,font=font,background="white")
+e2.pack()
+e2.place(x=400,y=125)
+
+
+#productcatyogary
+
+pdc=Label(root,text="Product Catogary",height="1",width="19",font=font,background="green")
+pdc.pack(side="left")
+pdc.place(x=0,y=175)
+
+catg=StringVar()
+opt=OptionMenu(root,catg,"Cars", "Television","Electronic","Phone","Oil","Aircraft","Medical")
+opt.pack()
+opt.config(width = 33)
+opt.place(x=400,y=175)
+
+#brand
+
+pdb=Label(root,text="Brand",height="1",width="19",font=font,background="green")
+pdb.pack(side="left")
+pdb.place(x=0,y=225)
+
+#enter Pdb
+
+e4=Entry(root,font=font,background="white")
+e4.pack()
+e4.place(x=400,y=225)
+
+
+#quantity
+
+pdq=Label(root,text="Quantity",height="1",width="19",font=font,background="green")
+pdq.pack(side="left")
+pdq.place(x=0,y=275)
+
+#enter pdq
+
+e3=Entry(root,font=font,background="white")
+e3.pack()
+e3.place(x=400,y=275)
+
+
+#Date_of_import
+doi=Label(root,text="Date Of Import",height="1",width="19",font=font,background="green")
+doi.pack(side="left")
+doi.place(x=0,y=325)
+
+#entre date
+
+cal = DateEntry(root, width= 37,date_pattern="yyyy/MM/dd", background= "black", foreground= "white",bd=2, state="readonly")
+cal.pack()
+cal.place(x=400,y=325)
+
+
+#functions for sorting data
+def doidesc():
+    tab.delete(*tab.get_children())
+    for row in sortdoidesc():
+        tab.insert("",END,values=row)
+def doiasc():
+    tab.delete(*tab.get_children())
+    for row in sortdoiasc():
+        tab.insert("",END,values=row)
+def qasc():
+    tab.delete(*tab.get_children())
+    for row in sortqasc():
+        tab.insert("",END,values=row)
+def qdesc():
+    tab.delete(*tab.get_children())
+    for row in sortqdesc():
+        tab.insert("",END,values=row)
+def pdasc():
+    tab.delete(*tab.get_children())
+    for row in sortidasc():
+        tab.insert("",END,values=row)
+def pddesc():
+    tab.delete(*tab.get_children())
+    for row in sortiddesc():
+        tab.insert("",END,values=row)
+
+
+
+#sorting data
+def sortdatac(inp):
+    inp=sor.get()
+    if inp=="Sort by Date (H to L)":
+        btn_sort=Button(root,command=doidesc,text="Sort",width=15,font=font2,fg="black",bg="yellow")
+        btn_sort.pack()
+        btn_sort.place(x=460,y=480)
+    elif inp=="Sort by Date (L to H)":
+        btn_sort=Button(root,command=doiasc,text="Sort",width=15,font=font2,fg="black",bg="yellow")
+        btn_sort.pack()
+        btn_sort.place(x=460,y=480)
+    elif inp=="Sort by P ID (H to L)":
+        btn_sort=Button(root,command=pddesc,text="Sort",width=15,font=font2,fg="black",bg="yellow")
+        btn_sort.pack()
+        btn_sort.place(x=460,y=480)
+    elif inp=="Sort by P ID (L to H)":
+        btn_sort=Button(root,command=pdasc,text="Sort",width=15,font=font2,fg="black",bg="yellow")
+        btn_sort.pack()
+        btn_sort.place(x=460,y=480)
+    elif inp=="Sort by Quantity (L to H)":
+        btn_sort=Button(root,command=qasc,text="Sort",width=15,font=font2,fg="black",bg="yellow")
+        btn_sort.pack()
+        btn_sort.place(x=460,y=480)
+    elif inp=="Sort by Quantity (H to L)":
+        btn_sort=Button(root,command=qdesc,text="Sort",width=15,font=font2,fg="black",bg="yellow")
+        btn_sort.pack()
+        btn_sort.place(x=460,y=480)
+
+
+sor=StringVar()
+opt2=OptionMenu(root,sor,"Sort by P ID (H to L)", "Sort by P ID (L to H)","Sort by Quantity (H to L)","Sort by Quantity (L to H)","Sort by Date (H to L)","Sort by Date (L to H)",command=sortdatac)
+opt2.pack()
+opt2.config(width = 33)
+opt2.place(x=400,y=430)
+
+
+
+
+
+#displayallbydefault
+def dispall():
+    tab.delete(*tab.get_children())
+    for row in disall():
+        tab.insert("",END,values=row)
+
+
+
+#functions for button
+def addd():
+    check=e1.get()
+    check2=e3.get()
+    if check=="" or e2.get()=="" or e3.get()=="" or e4.get()=="" or catg.get()=="" or cal.get()=="":
+        messagebox.showerror("Error","Kindely Enter all values")
+        return
+    if check.isdigit() and check2.isdigit():
+        adddetails(check,(e2.get()).title(),(catg.get()).title(),(e4.get()).title(),(e3.get()).title(),(cal.get()).title())
+        messagebox.showinfo("Success", "Record Added")
+    else:
+        messagebox.showerror("Error","Only Numaric value allowed for P ID and Quantity")
+    clearf()
+    dispall()
+def upd():
+    check=e1.get()    
+    if check=="":
+        messagebox.showerror("""Error", "Kindly enter P ID,of
+                             Which details is to be updated""")
+        return
+    
+    if check.isdigit():
+        convert=str(check)
+        for row in disall():
+            if check==row[0]:
+                messagebox.showerror("Error", "Record does not exist")
+        return
+    if check.isdigit():
+        convert=str(check)
+        modi(convert,(e2.get()).title(),(catg.get()).title(),(e4.get()).title(),(e3.get()).title(),(cal.get()).title())
+        messagebox.showinfo("Success", "Record Updated")
+        clearf()
+        dispall()
+
+
+    
+def dell():
+    z=e1.get()
+    deleted(z)
+    messagebox.showinfo("Success", "Record Deleted Successfully")
+    clearf()
+    dispall()
+
+def delall():
+    deleteall()
+    clearf()
+    dispall()
+
+
+def disby():
+    tab.delete(*tab.get_children())
+    x=e1.get()
+    row=disq(x)
+    tab.insert("",END,values=row)
+    clearf()
+
+
+
+    
+def clearf():
+    e1.delete(0,END)
+    e2.delete(0,END)
+    e3.delete(0,END)
+    e4.delete(0,END)
+    cal.delete(0,END)
+    catg.set("")
+
+
+
+    
+#buttons for function
+btn_addd=Button(root,command=addd,text="Add Details",width=15,font=font2,fg="black",bg="yellow")
+btn_addd.pack()
+btn_addd.place(x=20,y=380)
+
+btn_upd=Button(root,command=upd,text="Update Details",width=15,font=font2,fg="black",bg="yellow")
+btn_upd.pack()
+btn_upd.place(x=240,y=380)
+
+btn=Button(root,command=upd,text="Sort By ↓ ",width=15,font=font2,fg="black",bg="yellow")
+btn.pack()
+btn.place(x=460,y=380)
+
+btn_del=Button(root,command=dell,text="Delete Details",width=15,font=font2,fg="black",bg="yellow")
+btn_del.pack()
+btn_del.place(x=20,y=430)
+
+
+btn_delall=Button(root,command=delall,text="Delete All",width=15,font=font2,fg="black",bg="yellow")
+btn_delall.pack()
+btn_delall.place(x=240,y=430)
+
+
+btn_view=Button(root,command=disby,text="View Details",width=15,font=font2,fg="black",bg="yellow")
+btn_view.pack()
+btn_view.place(x=20,y=480)
+
+
+btn_viewall=Button(root,command=dispall,text="View All Details",width=15,font=font2,fg="black",bg="yellow")
+btn_viewall.pack()
+btn_viewall.place(x=240,y=480)
+
+btn_clear=Button(root,command=clearf,text="Clear Details",width=15,font=font2,fg="black",bg="yellow")
+btn_clear.pack()
+btn_clear.place(x=20,y=530)
+
+dispall()
+root.mainloop()
+
+                        </code>
+                      </pre>
+                    </p>
+                    <div class="col-lg-12">
+                      <div class="share">
+                        <h5>Share:</h5>
+                        <ul>
+                          <li><a href="#">Facebook</a>,</li>
+                          <li><a href="#">Twitter</a>,</li>
+                          <li><a href="#">Linkedin</a>,</li>
+                          <li><a href="#">Behance</a></li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-12">
+              <div class="main-button-red">
+                <a href="code.html">Back To Programs List</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer">
+      <p>Copyright © 2022 Edu Meeting Co., Ltd. All Rights Reserved. 
+          <br>Design: <a href="https://templatemo.com" target="_parent" title="free css templates">TemplateMo</a></p>
+    </div>
+  </section>
+
+
+  <!-- Scripts -->
+  <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <script src="assets/js/isotope.min.js"></script>
+    <script src="assets/js/owl-carousel.js"></script>
+    <script src="assets/js/lightbox.js"></script>
+    <script src="assets/js/tabs.js"></script>
+    <script src="assets/js/video.js"></script>
+    <script src="assets/js/slick-slider.js"></script>
+    <script src="assets/js/custom.js"></script>
+    <script>
+        //according to loftblog tut
+        $('.nav li:first').addClass('active');
+
+        var showSection = function showSection(section, isAnimate) {
+          var
+          direction = section.replace(/#/, ''),
+          reqSection = $('.section').filter('[data-section="' + direction + '"]'),
+          reqSectionPos = reqSection.offset().top - 0;
+
+          if (isAnimate) {
+            $('body, html').animate({
+              scrollTop: reqSectionPos },
+            800);
+          } else {
+            $('body, html').scrollTop(reqSectionPos);
+          }
+
+        };
+
+        var checkSection = function checkSection() {
+          $('.section').each(function () {
+            var
+            $this = $(this),
+            topEdge = $this.offset().top - 80,
+            bottomEdge = topEdge + $this.height(),
+            wScroll = $(window).scrollTop();
+            if (topEdge < wScroll && bottomEdge > wScroll) {
+              var
+              currentId = $this.data('section'),
+              reqLink = $('a').filter('[href*=\\#' + currentId + ']');
+              reqLink.closest('li').addClass('active').
+              siblings().removeClass('active');
+            }
+          });
+        };
+
+        $('.main-menu, .responsive-menu, .scroll-to-section').on('click', 'a', function (e) {
+          e.preventDefault();
+          showSection($(this).attr('href'), true);
+        });
+
+        $(window).scroll(function () {
+          checkSection();
+        });
+    </script>
+</body>
+
+
+  </body>
+
+</html>
